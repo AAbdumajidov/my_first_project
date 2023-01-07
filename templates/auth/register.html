@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+    <h5>Creating a new user</h5>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-control">
+            <label for="id_username">username</label>{{form.username}}
+        </div>
+
+        <div class="form-control">
+            <label for="id_password1">password</label>{{form.password1}}
+        </div>
+        <div class="form-control">
+            <label for="id_password2">Verify password</label>{{form.password2}}
+        </div>
+        <div>
+            <button type="submit">
+                Register
+            </button>
+        </div>
+    </form>
+<p>
+    Agar akkauntingiz bo'lsa, <a href="{% url 'auth:login' %}">login</a>qismiga o'ting
+</p>
+{% endblock%}

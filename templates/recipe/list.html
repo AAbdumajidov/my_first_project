@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Recipe listP{% endblock %}
+
+{% block content %}
+    <div class="button-group">
+        <a href="{% url 'recipes:create' %}" class="btn btn-link">Add new recipe</a>
+        <a href="{% url 'recipes:tag_create' %}" class="btn btn-link">Add new tag</a>
+    </div>
+    <div class="search-div">
+        <form class="search-form" action="{% url 'articles:list' %}">
+            <input type="search" name="q" class="search" placeholder="search..." autocomplete="off">
+            <input type="submit" value="search">
+        </form>
+    </div>
+    <ol class="list-group list-group-numbered">
+        {% for object in object_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-starts">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a href="{% url 'recipes:detail' object.slug %}">{{object.title}}</a>
+                    </div>
+                    {{object.author}}
+                </div>
+                <span class="badge bg-primary rounded-pill">{{object.ingredients.count}}</span>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}
